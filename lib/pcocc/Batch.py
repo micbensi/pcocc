@@ -1830,6 +1830,8 @@ class SlurmManager(EtcdManager):
         try:
             if self._etcd_auth_type == 'password':
                 os.environ['PCOCC_REQUEST_CRED'] = self._get_keyval_credential()
+            else:
+                os.environ['PCOCC_REQUEST_CRED'] = ""
             #Make sure user owned keys and cert are generated
             os.environ['SLURM_DISTRIBUTION'] = 'block:block'
             ret = subprocess.call(['salloc'] + self._batch_args + alloc_opt + cmd)
@@ -1843,6 +1845,8 @@ class SlurmManager(EtcdManager):
         try:
             if self._etcd_auth_type == 'password':
                 os.environ['PCOCC_REQUEST_CRED'] = self._get_keyval_credential()
+            else:
+                os.environ['PCOCC_REQUEST_CRED'] = ""
             os.environ['SLURM_DISTRIBUTION'] = 'block:block'
             subprocess.check_call(['sbatch'] +
                                   ['-J', 'pcocc','--signal', '15'] +
