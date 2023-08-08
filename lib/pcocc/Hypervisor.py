@@ -1166,7 +1166,7 @@ class Qemu(object):
                                    '-c',  '-u', 'pcocc',
                                    batch.batchuser],
                                   stdin=subprocess.PIPE)
-        s_exec.communicate(input=spice_password + '\n')
+        s_exec.communicate(input=spice_password + b'\n')
         if s_exec.returncode:
             raise PcoccError('Failed to setup SASL password')
 
