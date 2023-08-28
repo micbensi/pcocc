@@ -1220,7 +1220,7 @@ port={1}
 password={2}
 username={3}@pcocc
 """.format(vm.get_host(), spice_port,
-           spice_password, batch.batchuser))
+           spice_password.decode(), batch.batchuser))
 
         return ['-spice','port={0},sasl'.format(spice_port),
                 '-device', 'virtserialport,chardev=spicechannel0,name=com.redhat.spice.0',
